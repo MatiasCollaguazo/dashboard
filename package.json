@@ -2,15 +2,15 @@
   "name": "dashboard",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://{username}.github.io/dashboard",
+  "homepage": "https://matiascollaguazo.github.io/dashboard",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "lint": "eslint .",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
