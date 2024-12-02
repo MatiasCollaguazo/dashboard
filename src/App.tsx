@@ -17,7 +17,6 @@ interface Indicator {
 function App() {
   {/* Variable de estado y función de actualización */ }
   let [indicators, setIndicators] = useState<Indicator[]>([])
-  let [owm, setOWM] = useState(localStorage.getItem("openWeatherMap"))
   let [items, setItems] = useState<Item[]>([]);
 
   {/* Hook: useEffect */ }
