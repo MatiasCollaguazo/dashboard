@@ -3,5 +3,5 @@
      dateEnd: String;
      precipitation: String;
      humidity: String;
-     clouds;
+     clouds: String;
  }
