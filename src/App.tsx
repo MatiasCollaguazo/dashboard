@@ -6,9 +6,6 @@ import ControlWeather from './components/ControlWeather';
 import TableWeather from './components/TableWeather';
 import LineChartWeather from './components/LineChartWeather';
 
-import Dashboard from './dashboard/Dashboard';
-
-
 interface Indicator {
  title?: String;
  subtitle?: String;
