@@ -104,7 +104,9 @@ export default function Header({ title, onMenuClick, onSearch }: { title: string
               <SearchIcon />
             </SearchIconWrapper>
             <Autocomplete
+              autoHighlight
               freeSolo
+              blurOnSelect
               options={popularCities}
               inputValue={inputValue}
               onInputChange={(event, newInputValue) => {
