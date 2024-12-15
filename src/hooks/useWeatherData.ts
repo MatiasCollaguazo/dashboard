@@ -58,7 +58,7 @@ const useWeatherData = (city: string, countryCode: string) => {
 
         const now = new Date();
         const today = now.toISOString().split("T")[0];
-        let closestTimeElement: Element | null = null;
+        let closestTimeElement: Element | null = null; // Explicitly defined type here
         let minimumTimeDifference = Number.MAX_SAFE_INTEGER;
 
         timeElements.forEach((timeElement) => {
@@ -73,21 +73,21 @@ const useWeatherData = (city: string, countryCode: string) => {
           }
         });
 
-        if (closestTimeElement) {
+        if (closestTimeElement !== null) {
           const precipitation =
-            closestTimeElement.getElementsByTagName("precipitation")[0]?.getAttribute("probability") || "0";
+          (closestTimeElement as Element).getElementsByTagName("precipitation")[0]?.getAttribute("probability") || "0";
           const humidity =
-            closestTimeElement.getElementsByTagName("humidity")[0]?.getAttribute("value") || "N/A";
+          (closestTimeElement as Element).getElementsByTagName("humidity")[0]?.getAttribute("value") || "N/A";
           const clouds =
-            closestTimeElement.getElementsByTagName("clouds")[0]?.getAttribute("all") || "N/A";
+          (closestTimeElement as Element).getElementsByTagName("clouds")[0]?.getAttribute("all") || "N/A";
           const visibility =
-            closestTimeElement.getElementsByTagName("visibility")[0]?.getAttribute("value") || "N/A";
+          (closestTimeElement as Element).getElementsByTagName("visibility")[0]?.getAttribute("value") || "N/A";
 
           dataToIndicators.push(
-            { title: "Precipitación", subtitle: "Precipitation", value: `${parseFloat(precipitation) * 100}%`},
-            { title: "Húmedad", subtitle: "Humidity", value: `${humidity}%`},
-            { title: "Nubosidad", subtitle: "Cloudiness", value: clouds},
-            { title: "Visibilidad", subtitle: "Visibility", value: `${visibility} m`}
+            { title: "Precipitación", subtitle: "Precipitation", value: `${parseFloat(precipitation) * 100}%` },
+            { title: "Húmedad", subtitle: "Humidity", value: `${humidity}%` },
+            { title: "Nubosidad", subtitle: "Cloudiness", value: `${clouds}%` },
+            { title: "Visibilidad", subtitle: "Visibility", value: `${visibility} m` }
           );
         }
 

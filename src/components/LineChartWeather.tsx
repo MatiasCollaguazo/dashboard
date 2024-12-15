@@ -13,7 +13,7 @@ export default function LineChartWeather({ dataSeries, xLabels }: LineChartWeath
         p: 2,
         display: "flex",
         flexDirection: "column",
-        width: "auto"
+        width: "auto",
       }}
     >
       <LineChart

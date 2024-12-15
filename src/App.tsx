@@ -1,37 +1,24 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import useWeatherData from "./hooks/useWeatherData";
 import IndicatorWeather from "./components/IndicatorWeather";
 import TableWeather from "./components/TableWeather";
 import LineChartWeather from "./components/LineChartWeather";
 import ControlWeather from "./components/ControlWeather";
+import { SelectChangeEvent } from "@mui/material";
 import Header from "./components/Header";
-
+import Item from "./interface/Item";
 
 function App() {
-  const [ city, setCity ] = useState("Guayaquil");
+  const [city, setCity] = useState("Guayaquil");
   const { indicators, items } = useWeatherData(city, "EC");
-  const [selectedCategory, setSelectedCategory] = useState("precipitation");
+  const [selectedCategory, setSelectedCategory] = useState<keyof Item>("precipitation");
 
   const [searchQuery, setSearchQuery] = useState(city);
   const [debouncedSearch, setDebouncedSearch] = useState(city);
-  
-  const [backgroundImage, setBackgroundImage] = useState<string>("");
 
-  const fetchBackgroundImage = async (city: string) => {
-    const response = await fetch(`https://api.unsplash.com/search/photos?query=${city}&client_id=YOUR_ACCESS_KEY`);
-    const data = await response.json();
-    if (data.results.length > 0) {
-      setBackgroundImage(data.results[0].urls.regular);
-    }
-  };
-
-  useEffect(() => {
-    fetchBackgroundImage(city);
-  }, [city]);
-
-  const handleCategoryChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setSelectedCategory(event.target.value as string);
+  const handleCategoryChange = (event: SelectChangeEvent) => {
+    setSelectedCategory(event.target.value as keyof Item);
   };
 
   const xLabels = items.map((item) => item.dateStart);
@@ -42,21 +29,17 @@ function App() {
     },
   ];
 
-
   const renderIndicators = () => (
     <Grid container spacing={3} style={{ marginBottom: "20px" }}>
-      {
-        indicators.map((indicator, idx) => (
-          <Grid item key={idx} xs={12} sm={6} md={4} lg={3}>
-            <IndicatorWeather
-              title={indicator.title}
-              subtitle={indicator.subtitle}
-              value={indicator.value}
-              
-            />
-          </Grid>
-        ))
-    }
+      {indicators.map((indicator, idx) => (
+        <Grid item key={idx} xs={12} sm={6} md={4} lg={3}>
+          <IndicatorWeather
+            title={indicator.title}
+            subtitle={indicator.subtitle}
+            value={indicator.value}
+          />
+        </Grid>
+      ))}
     </Grid>
   );
 
@@ -80,16 +63,15 @@ function App() {
     }
   }, [debouncedSearch, city]);
 
-
   return (
-        <Grid
+    <Grid
       container
       spacing={3}
       style={{
         padding: "90px 0px 0px 24px",
-        background: `rgb(255,255,255)`,
+        background: "rgb(255,255,255)",
         backgroundSize: "cover",
-        minHeight: "100vh", 
+        minHeight: "100vh",
       }}
     >
       <Grid container spacing={0}>
@@ -110,19 +92,16 @@ function App() {
 
       {/* Controles y Tablas */}
       <Grid item xs={12} md={6}>
-        <ControlWeather 
-          selectedCategory={selectedCategory} 
-          onCategoryChange={handleCategoryChange} 
+        <ControlWeather
+          selectedCategory={selectedCategory}
+          onCategoryChange={handleCategoryChange}
         />
         <TableWeather itemsIn={items} />
       </Grid>
 
       {/* Gráfica */}
       <Grid item xs={12} md={6}>
-      <LineChartWeather 
-        dataSeries={dataSeries} 
-        xLabels={xLabels} 
-      />
+        <LineChartWeather dataSeries={dataSeries} xLabels={xLabels} />
       </Grid>
     </Grid>
   );

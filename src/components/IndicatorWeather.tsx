@@ -2,7 +2,6 @@ import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import { SxProps } from "@mui/material";
-import { ReactNode } from "react";
 
 interface Indicator {
   title?: string;

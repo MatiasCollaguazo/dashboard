@@ -38,6 +38,7 @@ export default function TableWeather(props: MyProp) {
   }, [props.itemsIn]);
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+    console.log(event);
     setPage(newPage);
   };
 
