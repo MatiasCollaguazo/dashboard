@@ -30,25 +30,22 @@ const formatDate = (date: string) => {
 
 export default function TableWeather(props: MyProp) {
   const [rows, setRows] = useState<Item[]>([]);
-  const [page, setPage] = useState(0); // Página actual
-  const [rowsPerPage, setRowsPerPage] = useState(10); // Filas por página
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   useEffect(() => {
     setRows(props.itemsIn);
   }, [props.itemsIn]);
 
-  // Función para manejar el cambio de página
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage);
   };
 
-  // Función para manejar el cambio de filas por página
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0); // Regresar a la primera página
+    setPage(0);
   };
 
-  // Calculamos los datos que se mostrarán en la página actual
   const currentRows = rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
   return (
@@ -64,7 +61,6 @@ export default function TableWeather(props: MyProp) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* Iteramos sobre los datos actuales para mostrar solo los de la página */}
           {currentRows.map((row, idx) => (
             <TableRow key={idx}>
               <TableCell component="th" scope="row">{formatDate(row.dateStart)}</TableCell>
@@ -79,9 +75,9 @@ export default function TableWeather(props: MyProp) {
       
       {/* Paginación */}
       <TablePagination
-        rowsPerPageOptions={[5, 10, 25]} // Opciones de filas por página
+        rowsPerPageOptions={[5, 10, 25]} 
         component="div"
-        count={rows.length} // Total de filas
+        count={rows.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

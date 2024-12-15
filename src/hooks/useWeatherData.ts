@@ -24,14 +24,12 @@ const useWeatherData = (city: string, countryCode: string) => {
 
         const savedTextXML = await response.text();
 
-        // XML Parsing
         const parser = new DOMParser();
         const xml = parser.parseFromString(savedTextXML, "application/xml");
 
-        // Indicators
         const dataToIndicators: Indicator[] = [];
         const name = xml.getElementsByTagName("name")[0]?.textContent || "";
-        dataToIndicators.push({ title: "Ciudad", subtitle: "Locación", value: name });
+        dataToIndicators.push({ title: "Ciudad", subtitle: "Location", value: name });
 
         const location = xml.getElementsByTagName("location")[1];
         if (location) {
@@ -45,7 +43,6 @@ const useWeatherData = (city: string, countryCode: string) => {
           );
         }
 
-        // Items
         const dataToItems: Item[] = [];
         const timeElements = Array.from(xml.getElementsByTagName("time"));
         timeElements.forEach((timeElement) => {
@@ -59,7 +56,6 @@ const useWeatherData = (city: string, countryCode: string) => {
         });
         setItems(dataToItems);
 
-        // Buscar el tiempo más cercano
         const now = new Date();
         const today = now.toISOString().split("T")[0];
         let closestTimeElement: Element | null = null;
