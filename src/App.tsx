@@ -68,7 +68,7 @@ function App() {
       container
       spacing={3}
       style={{
-        padding: "90px 0px 0px 24px",
+        padding: "90px 24px 0px 24px",
         background: "rgb(255,255,255)",
         backgroundSize: "cover",
         minHeight: "100vh",

@@ -17,7 +17,7 @@ export default function LineChartWeather({ dataSeries, xLabels }: LineChartWeath
       }}
     >
       <LineChart
-        width={700}
+        width={650}
         height={350}
         series={dataSeries}
         xAxis={[{ scaleType: "point", data: xLabels }]}
