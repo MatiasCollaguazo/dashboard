@@ -15,6 +15,20 @@ function App() {
 
   const [searchQuery, setSearchQuery] = useState(city);
   const [debouncedSearch, setDebouncedSearch] = useState(city);
+  
+  const [backgroundImage, setBackgroundImage] = useState<string>("");
+
+  const fetchBackgroundImage = async (city: string) => {
+    const response = await fetch(`https://api.unsplash.com/search/photos?query=${city}&client_id=YOUR_ACCESS_KEY`);
+    const data = await response.json();
+    if (data.results.length > 0) {
+      setBackgroundImage(data.results[0].urls.regular);
+    }
+  };
+
+  useEffect(() => {
+    fetchBackgroundImage(city);
+  }, [city]);
 
   const handleCategoryChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setSelectedCategory(event.target.value as string);
@@ -68,7 +82,16 @@ function App() {
 
 
   return (
-    <Grid container spacing={3} style={{ padding: "90px 0px 0px 24px" }}>
+        <Grid
+      container
+      spacing={3}
+      style={{
+        padding: "90px 0px 0px 24px",
+        background: `rgb(255,255,255)`,
+        backgroundSize: "cover",
+        minHeight: "100vh", 
+      }}
+    >
       <Grid container spacing={0}>
         {/* Header */}
         <Grid item xs={12}>
