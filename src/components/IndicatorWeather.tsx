@@ -1,28 +1,72 @@
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
+import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import { SxProps } from "@mui/material";
+import { ReactNode } from "react";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
 
 interface Indicator {
   title?: string;
   subtitle?: string;
   value?: string;
+  icon?: ReactNode;
+  bgColor?: string;
+  sx?: SxProps;
 }
 
 export default function IndicatorWeather(config: Indicator) {
   return (
     <Paper
+      elevation={3}
       sx={{
-        p: 2,
-        display: 'flex',
-        flexDirection: 'column',
+        p: 3,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 4,
+        background: config.bgColor || "linear-gradient(135deg, #f0f4f8, #e0e7ff)",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+        ...config.sx,
       }}
     >
-      <Typography component="h2" variant="h6" color="primary" gutterBottom>
+      {/* Icono opcional */}
+      {config.icon && (
+        <Box mb={1} color="primary.main">
+          {config.icon}
+        </Box>
+      )}
+
+      {/* Título */}
+      <Typography
+        component="h2"
+        variant="h6"
+        fontWeight="bold"
+        color="primary.main"
+        gutterBottom
+        align="center"
+      >
         {config.title}
       </Typography>
-      <Typography component="p" variant="h4">
+
+      {/* Valor principal */}
+      <Typography
+        component="p"
+        variant="h3"
+        fontWeight="bold"
+        color="text.primary"
+        align="center"
+      >
         {config.value}
       </Typography>
-      <Typography color="text.secondary" sx={{ flex: 1 }}>
+
+      {/* Subtítulo */}
+      <Typography
+        variant="body1"
+        color="text.secondary"
+        align="center"
+        sx={{ mt: 1 }}
+      >
         {config.subtitle}
       </Typography>
     </Paper>
