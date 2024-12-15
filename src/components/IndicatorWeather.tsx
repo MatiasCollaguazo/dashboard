@@ -8,7 +8,7 @@ interface Indicator {
   title?: string;
   subtitle?: string;
   value?: string;
-  icon?: ReactNode;
+  icon?: string;
   bgColor?: string;
   sx?: SxProps;
 }
@@ -51,7 +51,7 @@ export default function IndicatorWeather(config: Indicator) {
       {/* Valor principal */}
       <Typography
         component="p"
-        variant="h3"
+        variant="h4"
         fontWeight="bold"
         color="text.primary"
         align="center"

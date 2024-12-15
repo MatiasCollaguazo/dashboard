@@ -38,7 +38,7 @@ function App() {
               title={indicator.title}
               subtitle={indicator.subtitle}
               value={indicator.value}
-              icon={indicator.icon}
+              
             />
           </Grid>
         ))

@@ -13,10 +13,11 @@ export default function LineChartWeather({ dataSeries, xLabels }: LineChartWeath
         p: 2,
         display: "flex",
         flexDirection: "column",
+        width: "auto"
       }}
     >
       <LineChart
-        width={400}
+        width={700}
         height={250}
         series={dataSeries}
         xAxis={[{ scaleType: "point", data: xLabels }]}

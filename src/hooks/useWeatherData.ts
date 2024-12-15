@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import Item from "../interface/Item";
-import precipitationIcon from "../assets/img/precipitation.png";
-
 
 interface Indicator {
   title?: string;
   subtitle?: string;
   value?: string;
+  icon?: string;
 }
 
 const useWeatherData = (city: string, countryCode: string) => {
@@ -89,10 +88,10 @@ const useWeatherData = (city: string, countryCode: string) => {
             closestTimeElement.getElementsByTagName("visibility")[0]?.getAttribute("value") || "N/A";
 
           dataToIndicators.push(
-            { title: "Precipitación", subtitle: "Precipitation", value: `${parseFloat(precipitation) * 100}%`, icon: precipitationIcon },
-            { title: "Húmedad", subtitle: "Humidity", value: `${humidity}%`, icon: precipitationIcon },
-            { title: "Nubosidad", subtitle: "Cloudiness", value: clouds, icon: precipitationIcon },
-            { title: "Visibilidad", subtitle: "Visibility", value: `${visibility} m`, icon: precipitationIcon }
+            { title: "Precipitación", subtitle: "Precipitation", value: `${parseFloat(precipitation) * 100}%`},
+            { title: "Húmedad", subtitle: "Humidity", value: `${humidity}%`},
+            { title: "Nubosidad", subtitle: "Cloudiness", value: clouds},
+            { title: "Visibilidad", subtitle: "Visibility", value: `${visibility} m`}
           );
         }
 
