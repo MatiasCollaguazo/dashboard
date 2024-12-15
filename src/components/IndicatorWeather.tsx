@@ -3,7 +3,6 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import { SxProps } from "@mui/material";
 import { ReactNode } from "react";
-import WbSunnyIcon from "@mui/icons-material/WbSunny";
 
 interface Indicator {
   title?: string;
