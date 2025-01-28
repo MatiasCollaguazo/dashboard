@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Item from "../interface/Item";
-
+import API_KEY from "./config";
 interface Indicator {
   title?: string;
   subtitle?: string;
@@ -15,7 +15,6 @@ const useWeatherData = (city: string, countryCode: string) => {
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const API_KEY = "b14f773a299d15808f31b452ca782b74";
         const response = await fetch(
           `https://api.openweathermap.org/data/2.5/forecast?q=${city},${countryCode}&mode=xml&appid=${API_KEY}`
         );
